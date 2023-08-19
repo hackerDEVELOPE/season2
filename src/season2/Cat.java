@@ -1,6 +1,6 @@
 package season2;
 
-public class Cat implements Runnable, Jumpable {
+public class Cat implements SuperJumpable {
     private String name;
     private final int MAX_JUMP_DIST = 3;
 

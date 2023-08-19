@@ -1,6 +1,6 @@
 package season2;
 
-public class Rabbit implements Runnable, Jumpable {
+public class Rabbit implements SuperJumpable {
     private final int MAX_JUMP_DIST = 3;
     @Override
     public void run() {
