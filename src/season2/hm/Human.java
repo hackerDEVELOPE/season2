@@ -1,27 +1,28 @@
 package season2.hm;
 
 public class Human implements JumpoRun {
-    static int jumpDist = 20;
-    static int runDist = 100;
+    private final int JUMP_DIST = 20;
+    private final int RUN_DIST = 100;
+
+    @Override
+    public int getJUMP_DIST() {
+        return JUMP_DIST;
+    }
+
+    @Override
+    public int getRUN_DIST() {
+        return RUN_DIST;
+    }
+
+    @Override
+    public String getName() {
+        return name;
+    }
+
     private String name;
 
     public Human(String name) {
         this.name = name;
     }
 
-    @Override
-    public boolean jump(Wall w) {
-        System.out.println("гуманоид " + name +" был прыгал");
-        System.out.println(w.getHeight() < jumpDist ? "прыжок был успешен" : "прыжок был плох");
-        System.out.println();
-        return w.getHeight() < jumpDist;
-    }
-
-    @Override
-    public boolean run(Treadmill t) {
-        System.out.println("гуманоид " +name +" был бегающим" );
-        System.out.println(t.getDist() < runDist ? "бег был прекрасен" : "бег был ужасен");
-        System.out.println();
-        return t.getDist() < runDist;
-    }
 }
