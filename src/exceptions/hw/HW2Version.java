@@ -15,38 +15,27 @@ public class HW2Version {
             System.out.printf("Ошибка в строке №%d  в ячейке №%d ", e.getLineNumber(), e.getCellNumber());
             System.out.println();
 
+        } catch (ArraySizeException e) {
+            e.printStackTrace();
         }
-
-
         System.out.println("the end");
     }
 
     public static int arraySum(String[][] arr) throws ArrayDataException {
-
-        try {
-            if (arr.length != 4) throw new ArraySizeException("Неправильный размер массива");
-        } catch (ArraySizeException e) {
-            e.printStackTrace();
-            return 0;
-        }
+        if (arr.length != 4) throw new ArraySizeException("Неправильный размер массива");
 
         int sum = 0;
         for (int i = 0; i < arr.length; i++) {
-            try {
                 if (arr[i].length != 4) {
                     throw new ArraySizeException("Неправильный размер массива");
                 }
-            } catch (ArraySizeException e) {
-                e.printStackTrace();
-                break;
-            }
 
             for (int j = 0; j < arr[i].length; j++) {
-                    try {
-                        sum += Integer.parseInt(arr[i][j]);
-                    } catch (NumberFormatException e) {
-                        throw new ArrayDataException("Неправильный элемент", i, j);
-                    }
+                try {
+                    sum += Integer.parseInt(arr[i][j]);
+                } catch (NumberFormatException e) {
+                    throw new ArrayDataException("Неправильный элемент", i, j);
+                }
             }
         }
         return sum;
