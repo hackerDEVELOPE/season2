@@ -9,9 +9,9 @@ public interface Obstacles {
         }*/
     default boolean overcome(JumpoRun j, Obstacles o) {
         if (o instanceof Wall) {
-            return j.jump((Wall) o);
+            return j.jump(j, (Wall) o);
         } else {
-            return j.run((Treadmill) o);
+            return j.run(j, (Treadmill) o);
         }
     }
 }

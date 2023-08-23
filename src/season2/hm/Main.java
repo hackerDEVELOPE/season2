@@ -18,9 +18,9 @@ public class Main {
                 new Wall(39),
         };
 
-        for (int i = 0; i < j.length; i++) {
-            for (Obstacles obstacles : o) {
-                if (!o[i].overcome(j[i], obstacles)) {
+        for (JumpoRun competitor : j) {
+            for (Obstacles obstacle : o) {
+                if (!obstacle.overcome(competitor, obstacle)) {
                     break;
                 }
 
