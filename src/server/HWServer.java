@@ -17,50 +17,48 @@ public class HWServer {
 
     public static void main(String[] args) {
 
-        try {
-            server = new ServerSocket(port);
+        try (ServerSocket server = new ServerSocket(port)) {
             socket = server.accept();
             in = new DataInputStream(socket.getInputStream());
             out = new DataOutputStream(socket.getOutputStream());
             scanner = new Scanner(System.in);
 
-            new Thread(() -> {
-
+            Thread reader = new Thread(() -> {
                 while (true) {
-                    String str = null;
                     try {
-                        str = in.readUTF();
+                        out.writeUTF(scanner.nextLine());
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    if (str.equals("/q")){
-                        break;
-                    }
+
+
+                }
+
+            });
+            reader.setDaemon(true);
+            reader.start();
+
+
+            while (true) {
+                String str = in.readUTF();
+                if (str.equals("/q")) {
+                    System.out.println("client was disconnected");
+                    break;
+                } else {
                     System.out.println(str);
                 }
-            }).start();
 
-
-            new Thread(() -> {
-                while (true) {
-                    String str = scanner.nextLine();
-                    if (str.equals("/q")){
-                        break;
-                    }
-                    try {
-                        out.writeUTF(str);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-
-
-                }
-            }).start();
-
+            }
 
 
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                socket.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 

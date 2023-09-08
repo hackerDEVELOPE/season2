@@ -22,33 +22,41 @@ public class HWClient {
             in = new DataInputStream(socket.getInputStream());
             out = new DataOutputStream(socket.getOutputStream());
 
-            new Thread(() -> {
-                while (true) {
-                    String str = null;
-                    try {
-                        str = in.readUTF();
-                    } catch (IOException e) {
-                        e.printStackTrace();
+            Thread reader = new Thread(() -> {
+                try {
+                    while (true) {
+                        out.writeUTF(scanner.nextLine());
                     }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+
+            });
+            reader.setDaemon(true);
+            reader.start();
+
+
+            while (true) {
+                String str = in.readUTF();
+                if (str.equals("/q")) {
+                    System.out.println("client was disconnected");
+                    out.writeUTF("/q");
+                    break;
+                } else {
                     System.out.println(str);
                 }
-            }).start();
 
-            new Thread(() -> {
-                while (true) {
-                    String str = scanner.nextLine();
-                    try {
-                        out.writeUTF(str);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-
-
-                }
-            }).start();
+            }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            //    e.printStackTrace();
+        } finally {
+            try {
+                socket.close();
+            } catch (IOException | NullPointerException e) {
+                e.printStackTrace();
+            }
         }
 
 
