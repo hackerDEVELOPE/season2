@@ -38,13 +38,7 @@ public class Main {
 //            System.out.println("finally");
 //        }
 
-//        readFile("C:\\Users\\lolii\\IdeaProjects\\season2\\src\\1.txt");
-//        readFileTryWithResources("C:\\Users\\lolii\\IdeaProjects\\season2\\src\\1.txt");
-//        try {
-//            readFile1("C:\\Users\\lolii\\IdeaProjects\\season2\\src\\1.txt");
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
+
 
         try {
             System.out.println(factorial(-10));

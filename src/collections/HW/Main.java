@@ -19,13 +19,13 @@ public class Main {
         Phonebook.add("Джуктор", "92291008989");
         Phonebook.add("VanyaMVD", "911111111MVD");
         Phonebook.add("MaksCoding", "42424242424242");
-        Phonebook.add("ViktorSVO", "930IPHONE14PROMAX");
+        Phonebook.add("Viktor", "930IPHONE14PROMAX");
         Phonebook.add("DanyaIP", "920BILAIN");
 
         Phonebook.get("Джуктор");
         Phonebook.get("VanyaMVD");
         Phonebook.get("MaksCoding");
-        Phonebook.get("ViktorSVO");
+        Phonebook.get("Viktor");
         Phonebook.get("DanyaIP");
 
     }
